@@ -13,10 +13,11 @@ class pdf_reader():
     def read_pdf(self):
         text = []
         with open(self.path, 'rb') as file:
-            pdf = PyPDF2.PdfFileReader(file)
-            for page_num in range(pdf.numPages):
-                page = pdf.getPage(page_num)
-                text.append(page.extractText())
+            pdf = PyPDF2.PdfReader(file)
+            for page_num in range(len(pdf.pages)):
+                page = pdf.pages[page_num]
+                text.append(page.extract_text())
+                print(text)
 
         return text
 
